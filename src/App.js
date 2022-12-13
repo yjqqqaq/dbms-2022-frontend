@@ -1,24 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import MainPage from "./MainPage";
+import {Routes, Route, BrowserRouter, Switch} from "react-router-dom";
+import TopPage from "./TopPage";
+import {FilePage} from "./FilePage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+          <Switch>
+              <Route path="/" exact component={MainPage} />
+              <Route path="/top5" exact component={TopPage}/>
+              <Route path="/file/:filename" component={FilePage}/>
+          </Switch>
+      </BrowserRouter>
   );
 }
 
