@@ -1,7 +1,6 @@
 import * as React from 'react' ;
 import {useEffect, useState} from "react";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import {Link, Redirect, useHistory} from "react-router-dom";
 import copy from 'copy-to-clipboard';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {
@@ -22,6 +21,8 @@ function TopPage() {
     const [temporary, setTemporary] = useState("daily") ;
     const [documents, setDocuments] = useState([]) ;
     const [fields, setFields] = useState([]) ;
+    const history = useHistory();
+
     useEffect(() => {
         let array_ = [] ;
         documents.forEach((d) => {
@@ -48,7 +49,7 @@ function TopPage() {
                                     {fields.map((f) => <TableCell>{row[f] || ""}</TableCell>)}
                                     <TableCell>
                                         <IconButton onClick = {() => {
-                                            copy(JSON.stringify(row))
+                                            history.push('../article/' + row.aid.toString())
                                         }}>
                                             <ContentCopyIcon />
                                         </IconButton>
